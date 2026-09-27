@@ -359,7 +359,7 @@ function exportPdf(r){
   doc.setDrawColor(220); doc.line(15,y,195,y); y+=8;
   doc.setFontSize(16); doc.setTextColor(20); doc.text("Rapport d'intervention", 15, y); y+=10;
   doc.setFontSize(10); doc.setTextColor(90);
-  doc.text(`Date : ${r.date}`, 15, y); doc.text(`Technicien : ${r.tech||'-'}`, 110, y); y+=7;
+  doc.text(`Date : ${r.date}`, 15, y); doc.text(`Client : ${r.tech||'-'}`, 110, y); y+=7;
   doc.text(`Adresse : ${r.addr||'-'}`, 15, y); y+=6;
   doc.text(`Logement/local : ${r.logement||'-'}`, 15, y); doc.text(`Type : ${r.type}`, 110, y); y+=9;
   doc.setDrawColor(220); doc.line(15,y,195,y); y+=8;
@@ -382,7 +382,7 @@ function exportPdf(r){
   if(y > 235){ doc.addPage(); y=18; }
   doc.setFontSize(11); doc.text('Signatures :', 15, y); y+=5;
   doc.setFontSize(9); doc.setTextColor(90);
-  doc.text('Locataire / responsable', 15, y);
+  doc.text('Client / responsable', 15, y);
   doc.text('Technicien', 110, y);
   y += 3;
   if(r.sigClient){ try{ doc.addImage(r.sigClient, 'PNG', 15, y, 75, 28); }catch(e){} }
