@@ -102,7 +102,7 @@ canvas#sig-modal-canvas{width:100%;height:min(55vh,420px);border:1px solid var(-
     <h2>Nouveau rapport</h2>
     <div class="row">
       <div><label>Date</label><input type="date" id="f-date"></div>
-      <div><label>Technicien</label><input type="text" id="f-tech" placeholder="Nom"></div>
+      <div><label>Client</label><input type="text" id="f-tech" placeholder="Nom"></div>
     </div>
     <label>Adresse / résidence</label>
     <input type="text" id="f-addr" placeholder="Ex : 12 rue des Lilas, bât. B">
@@ -140,7 +140,7 @@ canvas#sig-modal-canvas{width:100%;height:min(55vh,420px);border:1px solid var(-
       <input type="file" id="f-photo-library" accept="image/*" multiple style="display:none">
     </div>
 
-    <label>Signature du locataire / responsable</label>
+    <label>Signature du client / responsable</label>
     <div class="sig-wrap locked" id="wrap-client">
       <canvas class="sig-canvas locked" id="sig-client"></canvas>
       <div class="sig-placeholder" id="ph-client"><span class="ic">✍️</span><span>Touchez « Agrandir pour signer »</span></div>
@@ -357,7 +357,7 @@ function exportPdf(r){
   if(coLine) doc.text(doc.splitTextToSize(coLine, 195-textX), textX, y);
   y = Math.max(y+8, 34);
   doc.setDrawColor(220); doc.line(15,y,195,y); y+=8;
-  doc.setFontSize(16); doc.setTextColor(20); doc.text("Rapport d'intervention — HLM", 15, y); y+=10;
+  doc.setFontSize(16); doc.setTextColor(20); doc.text("Rapport d'intervention", 15, y); y+=10;
   doc.setFontSize(10); doc.setTextColor(90);
   doc.text(`Date : ${r.date}`, 15, y); doc.text(`Technicien : ${r.tech||'-'}`, 110, y); y+=7;
   doc.text(`Adresse : ${r.addr||'-'}`, 15, y); y+=6;
@@ -390,7 +390,7 @@ function exportPdf(r){
   doc.setDrawColor(200);
   doc.rect(15, y, 75, 28); doc.rect(110, y, 75, 28);
 
-  const filename = `rapport-hlm-${(r.addr||'intervention').replace(/[^a-z0-9]+/gi,'-').toLowerCase()}-${r.date}.pdf`;
+  const filename = `rapport-${(r.addr||'intervention').replace(/[^a-z0-9]+/gi,'-').toLowerCase()}-${r.date}.pdf`;
   doc.save(filename);
 }
 
